@@ -1,10 +1,28 @@
-let offsetHours = 0
+input.onButtonPressed(Button.A, function () {
+    offsetHours += 1
+    if (offsetHours > 24) {
+        offsetHours = 0
+    }
+})
+input.onButtonPressed(Button.AB, function () {
+    offsetHours = 0
+    offsetMinutes = 0
+})
+input.onButtonPressed(Button.B, function () {
+    offsetMinutes += 1
+    if (offsetMinutes > 60) {
+        offsetMinutes = 0
+    }
+})
+let timeText = ""
+let totalSeconds = 0
 let offsetMinutes = 0
+let offsetHours = 0
+let hours = 0
+let minutes = 0
+let seconds = 0
 basic.forever(function () {
-    let seconds = 0
-    let minutes = 0
-    let hours = 0
-    let totalSeconds = Math.round(input.runningTime() / 1000)
+    totalSeconds = Math.round(input.runningTime() / 1000)
     totalSeconds += offsetHours * 3600
     totalSeconds += offsetMinutes * 60
     if (totalSeconds >= 3600) {
@@ -19,39 +37,19 @@ basic.forever(function () {
     if (seconds < 0) {
         seconds = 60 + seconds
     }
-
-    let timeText = ""
     if (hours < 10) {
         timeText = "0"
     }
-    timeText += hours.toString()
-
-    timeText += ":"
+    timeText = "" + timeText + hours.toString()
+    timeText = "" + timeText + ":"
     if (minutes < 10) {
-        timeText += "0"
+        timeText = "" + timeText + "0"
     }
-    timeText +=  minutes.toString()
-    timeText +=  "."
+    timeText = "" + timeText + minutes.toString()
+    timeText = "" + timeText + "."
     if (seconds < 10) {
-        timeText += "0"
+        timeText = "" + timeText + "0"
     }
-    timeText += seconds.toString() +  "    "
+    timeText = "" + timeText + seconds.toString() + "    "
     basic.showString(timeText)
-})
-
-input.onButtonPressed(Button.A, function () {
-    offsetHours += 1
-    if (offsetHours > 24) {
-        offsetHours = 0
-    }
-})
-input.onButtonPressed(Button.B, function () {
-    offsetMinutes += 1
-    if (offsetMinutes > 60) {
-        offsetMinutes = 0
-    }
-})
-input.onButtonPressed(Button.AB, function () {
-    offsetHours = 0
-    offsetMinutes = 0
 })
