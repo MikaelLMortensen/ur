@@ -37,19 +37,20 @@ basic.forever(function () {
     if (seconds < 0) {
         seconds = 60 + seconds
     }
+    timeText = ""
     if (hours < 10) {
         timeText = "0"
     }
-    timeText = "" + timeText + hours.toString()
-    timeText = "" + timeText + ":"
+    timeText = timeText + hours.toString()
+    timeText = timeText + ":"
     if (minutes < 10) {
-        timeText = "" + timeText + "0"
+        timeText = timeText + "0"
     }
-    timeText = "" + timeText + minutes.toString()
-    timeText = "" + timeText + "."
+    timeText = timeText + minutes.toString()
+    timeText = timeText + "."
     if (seconds < 10) {
-        timeText = "" + timeText + "0"
+        timeText = timeText + "0"
     }
-    timeText = "" + timeText + seconds.toString() + "    "
+    timeText = timeText + seconds.toString() + "    "
     basic.showString(timeText)
 })
